@@ -1,0 +1,31 @@
+/**HEADER NAV**/
+.navbar-brand {
+  margin-right: 50px;
+}
+
+/** PRESENTATION BLOCK **/
+.jumbotron {
+  background: #db7d00;
+  background: linear-gradient(135deg, rgba(219, 125, 0, 0.787552521) 0%, rgba(136, 0, 138, 0.7231267507) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 1px 10px rgba(150, 150, 150, 0.3);
+}
+
+/**GLOBAL**/
+.row {
+  margin-bottom: 25px;
+}
+
+/** CART.HMTL **/
+#cart-resume {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#emailForm:invalid {
+  border-color: lightcoral;
+}
+
+/*# sourceMappingURL=add.css.map */

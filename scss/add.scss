@@ -1,0 +1,33 @@
+/**HEADER NAV**/
+
+.navbar-brand {
+    margin-right: 50px;
+}
+
+/** PRESENTATION BLOCK **/
+
+.jumbotron {
+    background: rgb(219,125,0);
+    background: linear-gradient(135deg, rgba(219,125,0,0.7875525210084033) 0%, rgba(136,0,138,0.7231267507002801) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 10px rgba(150, 150, 150, 0.3);
+}
+
+/**GLOBAL**/
+
+.row {
+    margin-bottom: 25px;
+}
+
+/** CART.HMTL **/
+
+#cart-resume {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#emailForm:invalid {
+    border-color: lightcoral;
+}
