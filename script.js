@@ -6,13 +6,16 @@ var itemsStorage = document.getElementById('items-storage'); //Chemin vers la li
 //Au chargement de la page Boutique.
 document.body.onload = function() {
   //Initialisation de la requete fetch.
-  itemsFetch.then(function(response) {
+  fetch('http://localhost:3000/api/cameras', {
+    method: 'GET',
+    headers: {'content-type': 'application/json'}
+  }).then(function(response) {
     return response.json();
   }).then(function(json) {
     let items = json;
     initialize(items);
   }).catch(function(err) {
-    itemsStorage.innerHTML = "Impossible d'afficher les articles";
+    itemsStorage.innerHTML = "Impossible d'afficher les articles.";
   });
 }
 
