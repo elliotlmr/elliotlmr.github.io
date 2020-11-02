@@ -15,7 +15,6 @@ document.body.onload = function () {
     let items = json;
     initialize(items);
   }).catch(function (err) {
-    console.log(err);
     itemsStorage.innerHTML = "Impossible d'afficher les articles.";
   });
 }
@@ -34,21 +33,23 @@ function initialize(items) { //Database globale des articles
     const addName = document.createElement('h3');
     const addText = document.createElement('p');
     const addLense = document.createElement('h4');
+    const footerHolder = document.createElement('div');
     const addPrice = document.createElement('h4');
     const addButton = document.createElement('button');
 
     //Définition des classes pour chaque parties composant un article.
-    addItem.setAttribute('class', 'row store-item');
+    addItem.setAttribute('class', 'row store-item shadow');
     imageHolder.setAttribute('class', 'col-12 col-lg-4');
-    descriptionHolder.setAttribute('class', 'col-12 col-lg-8');
+    descriptionHolder.setAttribute('class', 'col-12 col-lg-8 item-description');
+    footerHolder.setAttribute('class', 'footer-holder');
     addButton.setAttribute('class', 'btn btn-dark float-right');
     addButton.setAttribute('type', 'submit');
 
     //Ajout du contenu, des titres et descriptions des articles.
     addName.textContent = item.name;
     addText.textContent = item.description;
-    addPrice.textContent = item.price + ' €';
-    addButton.innerHTML = 'Ajouter au panier';
+    addPrice.textContent = 'Prix : ' + item.price + ' €';
+    addButton.innerHTML = 'Voir les options';
 
     //Création des attributs, src et alt des images.
     addImage.src = item.imageUrl;
@@ -63,7 +64,8 @@ function initialize(items) { //Database globale des articles
     descriptionHolder.appendChild(addName);
     descriptionHolder.appendChild(addText);
     descriptionHolder.appendChild(addLense);
-    descriptionHolder.appendChild(addPrice);
-    descriptionHolder.appendChild(addButton);
+    descriptionHolder.appendChild(footerHolder);
+    footerHolder.appendChild(addPrice);
+    footerHolder.appendChild(addButton);
   }
 }
