@@ -14,7 +14,6 @@ document.body.onload = function () {
         let items = json;
         initialize(items);
     }).catch(function (err) {
-        console.log(err);
         carouselDisplay.innerHTML = "Une erreur est survenue lors de l'affichage.";
     });
 }
@@ -36,8 +35,8 @@ function initialize(items) {
         //Définition des classes de chaque élément.
         addItem.setAttribute('class', 'carousel-item');
         imageHolder.setAttribute('class', 'carousel-image-holder');
-        descriptionHolder.setAttribute('class', 'carousel-description');
-        addButton.setAttribute('class', 'btn btn-dark float-right');
+        descriptionHolder.setAttribute('class', 'carousel-caption d-none d-md-block');
+        addButton.setAttribute('class', 'btn btn-dark shadow');
         addButton.setAttribute('type', 'submit');
 
         //Ajout du contenu des imageHolder.
@@ -56,6 +55,8 @@ function initialize(items) {
         imageHolder.appendChild(addImage);
         descriptionHolder.appendChild(addName);
         descriptionHolder.appendChild(addButton);
-        console.log(err);
+
+        //Ajout de la classe active au premier item pour déclancher le carousel
+        carouselDisplay.firstElementChild.setAttribute('class', 'carousel-item active');
     }
 }
