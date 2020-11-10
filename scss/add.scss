@@ -23,19 +23,13 @@
 
 /** INDEX.HTML **/
 
-.carousel-caption {
-    & h3 {
-        text-shadow: 1px 1px 10px black !important;
-        font-size: 3rem !important;
-    }
-}
-
-/** STORE.HTML **/
-
 .item-description {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    & h3 {
+        text-shadow: 1px 1px 2px black;
+    }
 }
 
 .footer-holder {
@@ -54,4 +48,21 @@
 
 #emailForm:invalid {
     border-color: lightcoral;
+}
+
+/** ANIMATIONS **/
+
+@keyframes slide-to-left {
+    0% {
+        opacity: 10%;
+        transform: translateX(+30%);
+    }
+    100% {
+        opacity: 100%;
+        transform: translateX(0%);
+    }
+}
+
+.store-item {
+    animation: slide-to-left 1s forwards;
 }
