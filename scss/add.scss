@@ -1,3 +1,17 @@
+/**GLOBAL**/
+
+.row {
+    margin-bottom: 25px;
+}
+
+html {
+    min-height: auto !important;
+}
+
+body {
+    min-height: auto !important;
+}
+
 /**HEADER NAV**/
 
 .navbar-brand {
@@ -15,11 +29,6 @@
     margin-bottom: 0% !important;
 }
 
-/**GLOBAL**/
-
-.row {
-    margin-bottom: 25px;
-}
 
 /** INDEX.HTML **/
 
@@ -48,6 +57,14 @@
 
 #emailForm:invalid {
     border-color: lightcoral;
+}
+
+/** PRODUCT.HTML **/
+
+#item-display {
+    width: 90%;
+    margin-top: 50px;
+    margin-bottom: 100px;
 }
 
 /** ANIMATIONS **/

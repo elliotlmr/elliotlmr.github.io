@@ -32,7 +32,6 @@ function initialize(items) { //Database globale des articles
     const descriptionHolder = document.createElement('div');
     const addName = document.createElement('h3');
     const addText = document.createElement('p');
-    const addLense = document.createElement('h4');
     const footerHolder = document.createElement('div');
     const addPrice = document.createElement('h4');
     const addButton = document.createElement('button');
@@ -64,7 +63,6 @@ function initialize(items) { //Database globale des articles
     imageHolder.appendChild(addImage);
     descriptionHolder.appendChild(addName);
     descriptionHolder.appendChild(addText);
-    descriptionHolder.appendChild(addLense);
     descriptionHolder.appendChild(footerHolder);
     footerHolder.appendChild(addPrice);
     footerHolder.appendChild(addButton);
@@ -85,7 +83,10 @@ function initialize(items) { //Database globale des articles
   console.log(optionButtons);
   optionButtons.forEach(optionButton => optionButton.addEventListener('click', function() {
     let currentItems = JSON.parse(localStorage.getItem('items'));
-    currentItems = (currentItems ? currentItems : []).concat(optionButton.id);
+    currentItems = (currentItems ? currentItems : []).concat(item); //
     localStorage.setItem('items', JSON.stringify(currentItems));
     document.location.href="product.html";
   }));*/
+
+  let currentItems = JSON.parse(localStorage.getItem('items'));
+  currentItems = (currentItems ? currentItems : []).concat(item); //
