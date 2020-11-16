@@ -25,7 +25,7 @@ document.body.onload = function () {
             const addLense = document.createElement('div');
             const lenseButton = document.createElement('button');
             const lensesChoice = document.createElement('div');
-            const newLense = document.createElement('a');
+            
             const footerHolder = document.createElement('div');
             const addPrice = document.createElement('h4');
             const addButton = document.createElement('button');
@@ -34,6 +34,7 @@ document.body.onload = function () {
             addItem.setAttribute('class', 'row store-item shadow');
             imageHolder.setAttribute('class', 'col-12 col-lg-5');
             descriptionHolder.setAttribute('class', 'col-12 col-lg-7 item-description');
+            addText.setAttribute('class', 'text-left');
                 //Menu permettant de choisir l'objectif de l'appareil.
             addLense.setAttribute('class', 'dropdown');
             lenseButton.setAttribute('class', 'btn btn-dark dropdown-toggle');
@@ -44,7 +45,7 @@ document.body.onload = function () {
             lenseButton.setAttribute('aria-expended', 'false');
             lensesChoice.setAttribute('class', 'dropdown-menu');
             lensesChoice.setAttribute('aria-labelledby', 'dropdownMenuButton');
-            newLense.setAttribute('class', 'dropdown-item');
+            
                 //Footer de l'article avec prix et bouton d'ajout au panier
             footerHolder.setAttribute('class', 'footer-holder');
             addButton.setAttribute('class', 'btn btn-dark float-right add-cart-btn');
@@ -54,7 +55,7 @@ document.body.onload = function () {
             //Ajout du contenu, des titres et descriptions des articles.
             addName.textContent = item.name;
             addText.textContent = item.description;
-            lenseButton.innerHTML = 'Séléctionnez un objectif';
+            lenseButton.innerHTML = 'Séléctionnez un objectif ';
             addPrice.textContent = 'Prix : ' + item.price + ' €';
             addButton.innerHTML = 'Ajouter au panier';
 
@@ -73,7 +74,7 @@ document.body.onload = function () {
             descriptionHolder.appendChild(addLense);
             addLense.appendChild(lenseButton);
             addLense.appendChild(lensesChoice);
-            lensesChoice.appendChild(newLense);
+        
             descriptionHolder.appendChild(footerHolder);
             footerHolder.appendChild(addPrice);
             footerHolder.appendChild(addButton);
@@ -81,7 +82,13 @@ document.body.onload = function () {
             //Fonction permettant l'affichage des choix possibles de lentilles.
             item.lenses.map(lense => displayLense(lense));
             function displayLense(lense) {
-                
+                const newLense = document.createElement('a');
+                newLense.setAttribute('class', 'dropdown-item');
+                newLense.innerHTML = lense;
+                lensesChoice.appendChild(newLense);
+                newLense.onclick = function(){
+                    lenseButton.innerHTML = 'Objectif sélectionné : ' + lense + ' ';
+                };
             }
         };
         displayItem(item);
