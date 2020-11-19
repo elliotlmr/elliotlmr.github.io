@@ -13,7 +13,7 @@ document.body.onload = function () {
     }).then(function (json) {
         //Fonction permettant de récuperer l'id de l'objet souhaité dans l'URL, et d'afficher le contenu en conséquence.
         let item = json;
-        
+
         function displayItem(item) {
             //Création des éléments constituant le contenu de la page.
             const addItem = document.createElement('div');
@@ -25,7 +25,6 @@ document.body.onload = function () {
             const addLense = document.createElement('div');
             const lenseButton = document.createElement('button');
             const lensesChoice = document.createElement('div');
-            
             const footerHolder = document.createElement('div');
             const addPrice = document.createElement('h4');
             const addButton = document.createElement('button');
@@ -35,7 +34,7 @@ document.body.onload = function () {
             imageHolder.setAttribute('class', 'col-12 col-lg-5');
             descriptionHolder.setAttribute('class', 'col-12 col-lg-7 item-description');
             addText.setAttribute('class', 'text-left');
-                //Menu permettant de choisir l'objectif de l'appareil.
+            //Menu permettant de choisir l'objectif de l'appareil.
             addLense.setAttribute('class', 'dropdown');
             lenseButton.setAttribute('class', 'btn btn-dark dropdown-toggle');
             lenseButton.setAttribute('type', 'button');
@@ -45,8 +44,8 @@ document.body.onload = function () {
             lenseButton.setAttribute('aria-expended', 'false');
             lensesChoice.setAttribute('class', 'dropdown-menu');
             lensesChoice.setAttribute('aria-labelledby', 'dropdownMenuButton');
-            
-                //Footer de l'article avec prix et bouton d'ajout au panier
+
+            //Footer de l'article avec prix et bouton d'ajout au panier
             footerHolder.setAttribute('class', 'footer-holder');
             addButton.setAttribute('class', 'btn btn-dark float-right add-cart-btn');
             addButton.setAttribute('type', 'submit');
@@ -74,7 +73,6 @@ document.body.onload = function () {
             descriptionHolder.appendChild(addLense);
             addLense.appendChild(lenseButton);
             addLense.appendChild(lensesChoice);
-        
             descriptionHolder.appendChild(footerHolder);
             footerHolder.appendChild(addPrice);
             footerHolder.appendChild(addButton);
@@ -86,10 +84,19 @@ document.body.onload = function () {
                 newLense.setAttribute('class', 'dropdown-item');
                 newLense.innerHTML = lense;
                 lensesChoice.appendChild(newLense);
-                newLense.onclick = function(){
+                newLense.onclick = function () {
                     lenseButton.innerHTML = 'Objectif sélectionné : ' + lense + ' ';
                 };
             }
+
+            //Fonction permettant d'ajouter l'article actuel au panier (localStorage).
+            addCartButton = document.querySelector('.add-cart-btn');
+            addCartButton.onclick = function () {
+                let currentItems = JSON.parse(localStorage.getItem('items'));
+                currentItems = (currentItems ? currentItems : []).concat(item);
+                localStorage.setItem('items', JSON.stringify(currentItems));
+                document.location.href="cart.html";
+            };
         };
         displayItem(item);
     }).catch(function (err) {

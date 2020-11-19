@@ -56,40 +56,43 @@
                     <div id="cart-content">
                         
                     </div>
-                    <h3 class="text-right">Total : <span id="totalPrice">__ €</span></h3>
+                    <div id="footer-cart" class="d-flex justify-content-between mb-2">
+                        <button type="submit" class="btn btn-dark float-right" id="delete-all-btn">Vider le panier</button>
+                        <h3 class="text-right">Total : <span id="totalPrice">__ €</span></h3>
+                    </div>
                 </div>
                 <div class="col-12 col-lg-8 mt-5">
-                    <form>
+                    <form id="cart-form">
                         <div class="form-group">
-                            <label for="lastNameInput">Nom :</label>
+                            <label for="lastNameInput">Nom* :</label>
                             <input type="text" class="form-control" placeholder="NOM" id="lastNameForm">
                         </div>
                         <div class="form-group">
-                            <label for="firstNameInput">Prénom :</label>
+                            <label for="firstNameInput">Prénom* :</label>
                             <input type="text" class="form-control" placeholder="Prénom" id="firstNameForm">
                         </div>
                         <div class="form-group">
-                            <label for="mailInput">Email :</label>
+                            <label for="mailInput">Email* :</label>
                             <input type="email" class="form-control" placeholder="Orinoco@exemple.com" id="emailForm">
                         </div>
                         <div class="form-group">
-                            <label for="addressInput">Adresse :</label>
+                            <label for="addressInput">Adresse* :</label>
                             <input type="text" class="form-control" placeholder="Numéro et nom de la rue"
                                 id="addressForm">
                         </div>
                         <div class="form-group">
-                            <label for="zipInput">Code postal :</label>
+                            <label for="zipInput">Code postal* :</label>
                             <input type="text" class="form-control" placeholder="Code postal" id="zipCodeForm">
                         </div>
                         <div class="form-group">
-                            <label for="cityInput">Ville :</label>
+                            <label for="cityInput">Ville* :</label>
                             <input type="text" class="form-control" placeholder="Ville" id="cityForm">
                         </div>
                         <div class="form-group">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="confirmCheck">
                                 <label class="form-check-label" for="gridCheck">J'ai <a href="conditions.html">lu</a> et
-                                    j'accepte les <a href="conditions.html">conditions générales de vente.</a></label>
+                                    j'accepte les <a href="conditions.html">conditions générales de vente.</a>*</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -99,7 +102,8 @@
                             </div>
                         </div>
                     </form>
-                    <button type="submit" class="btn btn-dark float-right"><i class="fas fa-cart-arrow-down"></i>
+                    <p>*Champs obligatoires.</p>
+                    <button type="submit" class="btn btn-dark float-right" id="validation-btn"><i class="fas fa-cart-arrow-down"></i>
                         Confirmer l'achat</button>
                 </div>
             </div>
@@ -124,6 +128,7 @@
     </div>
 
     <!-- Optional JavaScript -->
+    <script type="text/javascript" src="./cart.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
