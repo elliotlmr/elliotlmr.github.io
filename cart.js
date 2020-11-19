@@ -75,10 +75,12 @@ validationButton.onclick = function () {
 
   const newOrder = {
     contact:{
-      name: lastNameForm + firstNameForm,
-      email: emailForm,
+      firstName: firstNameForm,
+      lastName: lastNameForm,
       address: addressForm + zipCodeForm,
-      city: cityForm}, 
+      city: cityForm,
+      email: emailForm
+    }, 
     products: JSON.parse(localStorage.getItem('items')).map(x => x.id)
   };
 
