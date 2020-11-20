@@ -39,9 +39,14 @@ document.body.onload = function () {
   //Fonction de la case delete afin de supprimer un objet du panier.
 
   var deleteButtons = document.querySelectorAll('.delete-btn');
-
-  deleteButtons.forEach(deleteButton => deleteButton.addEventListener('click', function() {
+  
+  function deleteItem(currentItem) {
     localStorage.removeItem('items', JSON.stringify(currentItem));
+    window.location.reload();
+  }
+  
+  deleteButtons.forEach(deleteButton => deleteButton.addEventListener('click', function() {
+    currentItems.map(currentItem => deleteItem(currentItem));
   }));
 }
 
