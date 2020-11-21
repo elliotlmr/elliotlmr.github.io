@@ -87,6 +87,3 @@ function initialize(items) { //Database globale des articles
     localStorage.setItem('items', JSON.stringify(currentItems));
     document.location.href="product.html";
   }));*/
-
-  let currentItems = JSON.parse(localStorage.getItem('items'));
-  currentItems = (currentItems ? currentItems : []).concat(item); //

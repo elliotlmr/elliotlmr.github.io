@@ -14,6 +14,7 @@ document.body.onload = function () {
     const addLense = document.createElement('h4');
     const addPrice = document.createElement('h4');
     const addButton = document.createElement('button');
+    const addId = currentItem.id;
 
     //Définition des classes pour chaque parties composant un article.
     addItem.setAttribute('class', 'row shadow d-flex justify-content-between p-1');
@@ -44,7 +45,7 @@ document.body.onload = function () {
     localStorage.removeItem('items', JSON.stringify(currentItem));
     window.location.reload();
   }
-  
+
   deleteButtons.forEach(deleteButton => deleteButton.addEventListener('click', function() {
     currentItems.map(currentItem => deleteItem(currentItem));
   }));
@@ -80,16 +81,16 @@ validationButton.onclick = function () {
 
   const newOrder = {
     contact:{
-      firstName: firstNameForm,
-      lastName: lastNameForm,
-      address: addressForm + zipCodeForm,
-      city: cityForm,
-      email: emailForm
+      firstName: firstNameForm.value,
+      lastName: lastNameForm.value,
+      address: addressForm.value + zipCodeForm.value,
+      city: cityForm.value,
+      email: emailForm.value
     }, 
-    products: JSON.parse(localStorage.getItem('items')).map(x => x.id)
+    products: JSON.parse(localStorage.getItem('items')).map(currentItem => currentItem._id)
   };
 
-  fetch('http://localhost:3000/api/cameras', {
+  fetch('http://localhost:3000/api/cameras/order', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(newOrder)
