@@ -144,14 +144,3 @@ emailForm.onchange = event => {
 function emailIsValid(value) {
   return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
 };
-
-/*cartForm.onchange = function() {
-  if (lastNameIsValid != true || firstNameIsValid != true || addressIsValid != true || zipIsValid != true || cityIsValid != true || emailIsValid != true) {
-    formatMessage.textContent = '*Champ(s) obligatoire(s) non valide(s).';
-    formatMessage.setAttribute('class', 'text-danger');
-  };
-  if (lastNameIsValid.validity.valid && firstNameIsValid == true && addressIsValid == true && zipIsValid == true && cityIsValid == true && emailIsValid == true) {
-    formatMessage.textContent = '*Champ(s) obligatoire(s) valide(s).';
-    formatMessage.setAttribute('class', 'text-success');
-  };
-};*/
