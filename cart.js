@@ -1,6 +1,7 @@
 //Fonctions globales
 const cartContent = document.getElementById('cart-content');
 const deleteAllButton = document.getElementById('delete-all-btn');
+const totalPrice = document.getElementById('totalPrice');
 
 //Au chargement du Panier.
 document.body.onload = function () {
@@ -14,7 +15,6 @@ document.body.onload = function () {
     const addLense = document.createElement('h4');
     const addPrice = document.createElement('h4');
     const addButton = document.createElement('button');
-    const addId = currentItem.id;
 
     //Définition des classes pour chaque parties composant un article.
     addItem.setAttribute('class', 'row shadow d-flex justify-content-between p-1');
@@ -23,52 +23,43 @@ document.body.onload = function () {
     addButton.setAttribute('id', currentItem._id);
 
     //Ajout du contenu, des titres et descriptions des articles.
-    addName.textContent = currentItem.name + ' : ' + currentItem.lenses;
+    addName.textContent = 'Référence : ' + currentItem.name;
     addPrice.textContent = 'Prix : ' + currentItem.price + ' €';
     addButton.innerHTML = '<i class="fas fa-times"></i>';
 
     //Répartition des différents éléments composant un article.
     cartContent.appendChild(addItem);
     addItem.appendChild(addName);
-    addItem.appendChild(addLense);
     addItem.appendChild(addPrice);
     addItem.appendChild(addButton);
+
+    //Fonction du boutton delete afin de supprimer un objet du panier.
+    addButton.onclick = function () {
+      let newItems = currentItems.filter(x => x._id != currentItem._id);
+      localStorage.setItem('items', JSON.stringify(newItems));
+      window.location.reload();
+    };
   };
 
-  currentItems.map(currentItem => updateCart(currentItem));  
+  currentItems.map(currentItem => updateCart(currentItem)); 
   
-  //Fonction de la case delete afin de supprimer un objet du panier.
 
-  var deleteButtons = document.querySelectorAll('.delete-btn');
-  
-  function deleteItem(currentItem) {
-    localStorage.removeItem('items', JSON.stringify(currentItem));
-    window.location.reload();
-  }
-
-  deleteButtons.forEach(deleteButton => deleteButton.addEventListener('click', function() {
-    currentItems.map(currentItem => deleteItem(currentItem));
-  }));
+  //Fonction permettant d'afficher le prix total du panier.
+  let sum = 0;
+  let itemsPrices = JSON.parse(localStorage.getItem('items')).map(x => x.price);
+  for (var i = 0, len = itemsPrices.length; i < len; i++) {
+    sum += itemsPrices[i];
+  };
+  totalPrice.innerHTML = sum + ' €';
 }
 
-/*/Fonction de la case delete afin de supprimer un objet du panier.
-
-var deleteButtons = document.querySelectorAll('.delete-btn');
-
-deleteButtons.forEach(deleteButton => deleteButton.addEventListener('click', function() {
-    currentItems = (currentItems ? currentItems : []).concat(deleteButton.id);
-    localStorage.removeItem('items', JSON.stringify(currentItem));
-}));*/
-
 //Fonction permettant de vider entièrement le panier (localStorage clear).
-
 deleteAllButton.onclick = function () {
   window.localStorage.clear();
   window.location.reload();
 };
 
-//Fonction permettant de valider la commande et d'envoyer la requete POST.
-
+//Fonction permettant de valider la commande, d'envoyer la requete POST, et de sauvegarder l'orderId et le prix total dans le localStorage.
 const validationButton = document.getElementById('validation-btn');
 const lastNameForm = document.getElementById('lastNameForm');
 const firstNameForm = document.getElementById('firstNameForm');
@@ -98,9 +89,58 @@ validationButton.onclick = function () {
     return response.json();
   }).then(function (json) {
     console.log(json);
+    if(json.orderId) {
+    localStorage.setItem('orderId', JSON.stringify(json.orderId));
+    document.location.href="confirm.html";
+    }
   }).catch(function (error) {
     console.error(error);
   });
+  
+  localStorage.setItem('orderPrice', JSON.stringify(totalPrice.innerHTML));
+};
 
-  //document.location.href="confirm.html";
+//Partie de code permettant de vérifier et de valider les données inscrites
+//par l'utilisateur dans le formulaire, avant l'envoi de ce dernier.
+
+lastNameForm.onchange = event => {
+  lastNameIsValid(event.target.value)?lastNameForm.setAttribute('class', 'form-control valid-form'):lastNameForm.setAttribute('class', 'form-control invalid-form');
+};
+function lastNameIsValid(value) {
+  return /[A-Z]/.test(value);
+};
+
+firstNameForm.onchange = event => {
+  firstNameIsValid(event.target.value)?firstNameForm.setAttribute('class', 'form-control valid-form'):firstNameForm.setAttribute('class', 'form-control invalid-form');
+};
+function firstNameIsValid(value) {
+  return /\b[A-Z][a-z]*\b/.test(value);
+};
+
+addressForm.onchange = event => {
+  addressIsValid(event.target.value)?addressForm.setAttribute('class', 'form-control valid-form'):addressForm.setAttribute('class', 'form-control invalid-form');
+};
+function addressIsValid(value) {
+  return /(\d{1,}) [a-zA-Z0-9\s]+(\.)? [a-zA-Z]/.test(value);
+};
+
+zipCodeForm.onchange = event => {
+  zipIsValid(event.target.value)?zipCodeForm.setAttribute('class', 'form-control valid-form'):zipCodeForm.setAttribute('class', 'form-control invalid-form');
+};
+function zipIsValid(value) {
+  return /^[0-9]{5}$/.test(value);
+};
+
+cityForm.onchange = event => {
+  cityIsValid(event.target.value)?cityForm.setAttribute('class', 'form-control valid-form'):cityForm.setAttribute('class', 'form-control invalid-form');
+};
+function cityIsValid(value) {
+  return /\b[A-Z][a-z]*\b/.test(value);
+};
+
+emailForm.onchange = event => {
+  emailIsValid(event.target.value)?emailForm.setAttribute('class', 'form-control valid-form'):emailForm.setAttribute('class', 'form-control invalid-form');
+};
+function emailIsValid(value) {
+  return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
 };

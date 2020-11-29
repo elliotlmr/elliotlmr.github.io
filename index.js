@@ -77,13 +77,3 @@ function initialize(items) { //Database globale des articles
     document.location.href="product.html" + path;
   }));
 }
-
-
-/*var optionButtons = document.querySelectorAll('.option-btn');
-  console.log(optionButtons);
-  optionButtons.forEach(optionButton => optionButton.addEventListener('click', function() {
-    let currentItems = JSON.parse(localStorage.getItem('items'));
-    currentItems = (currentItems ? currentItems : []).concat(item); //
-    localStorage.setItem('items', JSON.stringify(currentItems));
-    document.location.href="product.html";
-  }));*/

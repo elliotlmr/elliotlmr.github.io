@@ -53,6 +53,14 @@ body {
   border-color: lightcoral;
 }
 
+.invalid-form {
+  border-color: lightcoral !important;
+}
+
+.valid-form {
+  border-color: #7CB342 !important;
+}
+
 /** PRODUCT.HTML **/
 #item-display {
   width: 90%;
