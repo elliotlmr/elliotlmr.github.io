@@ -104,43 +104,54 @@ validationButton.onclick = function () {
 //par l'utilisateur dans le formulaire, avant l'envoi de ce dernier.
 
 lastNameForm.onchange = event => {
-  lastNameIsValid(event.target.value)?lastNameForm.setAttribute('class', 'form-control valid-form'):lastNameForm.setAttribute('class', 'form-control invalid-form');
+  lastNameIsValid(event.target.value)?lastNameForm.setAttribute('class', 'form-control valid-form')+validationButton.removeAttribute('disabled'):lastNameForm.setAttribute('class', 'form-control invalid-form')+validationButton.setAttribute('disabled', '');
 };
 function lastNameIsValid(value) {
   return /[A-Z]/.test(value);
 };
 
 firstNameForm.onchange = event => {
-  firstNameIsValid(event.target.value)?firstNameForm.setAttribute('class', 'form-control valid-form'):firstNameForm.setAttribute('class', 'form-control invalid-form');
+  firstNameIsValid(event.target.value)?firstNameForm.setAttribute('class', 'form-control valid-form')+validationButton.removeAttribute('disabled'):firstNameForm.setAttribute('class', 'form-control invalid-form')+validationButton.setAttribute('disabled', '');
 };
 function firstNameIsValid(value) {
   return /\b[A-Z][a-z]*\b/.test(value);
 };
 
 addressForm.onchange = event => {
-  addressIsValid(event.target.value)?addressForm.setAttribute('class', 'form-control valid-form'):addressForm.setAttribute('class', 'form-control invalid-form');
+  addressIsValid(event.target.value)?addressForm.setAttribute('class', 'form-control valid-form')+validationButton.removeAttribute('disabled'):addressForm.setAttribute('class', 'form-control invalid-form')+validationButton.setAttribute('disabled', '');
 };
 function addressIsValid(value) {
   return /(\d{1,}) [a-zA-Z0-9\s]+(\.)? [a-zA-Z]/.test(value);
 };
 
 zipCodeForm.onchange = event => {
-  zipIsValid(event.target.value)?zipCodeForm.setAttribute('class', 'form-control valid-form'):zipCodeForm.setAttribute('class', 'form-control invalid-form');
+  zipIsValid(event.target.value)?zipCodeForm.setAttribute('class', 'form-control valid-form')+validationButton.removeAttribute('disabled'):zipCodeForm.setAttribute('class', 'form-control invalid-form')+validationButton.setAttribute('disabled', '');
 };
 function zipIsValid(value) {
   return /^[0-9]{5}$/.test(value);
 };
 
 cityForm.onchange = event => {
-  cityIsValid(event.target.value)?cityForm.setAttribute('class', 'form-control valid-form'):cityForm.setAttribute('class', 'form-control invalid-form');
+  cityIsValid(event.target.value)?cityForm.setAttribute('class', 'form-control valid-form')+validationButton.removeAttribute('disabled'):cityForm.setAttribute('class', 'form-control invalid-form')+validationButton.setAttribute('disabled', '');
 };
 function cityIsValid(value) {
   return /\b[A-Z][a-z]*\b/.test(value);
 };
 
 emailForm.onchange = event => {
-  emailIsValid(event.target.value)?emailForm.setAttribute('class', 'form-control valid-form'):emailForm.setAttribute('class', 'form-control invalid-form');
+  emailIsValid(event.target.value)?emailForm.setAttribute('class', 'form-control valid-form')+validationButton.removeAttribute('disabled'):emailForm.setAttribute('class', 'form-control invalid-form')+validationButton.setAttribute('disabled', '');
 };
 function emailIsValid(value) {
   return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
 };
+
+/*cartForm.onchange = function() {
+  if (lastNameIsValid != true || firstNameIsValid != true || addressIsValid != true || zipIsValid != true || cityIsValid != true || emailIsValid != true) {
+    formatMessage.textContent = '*Champ(s) obligatoire(s) non valide(s).';
+    formatMessage.setAttribute('class', 'text-danger');
+  };
+  if (lastNameIsValid.validity.valid && firstNameIsValid == true && addressIsValid == true && zipIsValid == true && cityIsValid == true && emailIsValid == true) {
+    formatMessage.textContent = '*Champ(s) obligatoire(s) valide(s).';
+    formatMessage.setAttribute('class', 'text-success');
+  };
+};*/
