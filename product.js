@@ -54,7 +54,7 @@ document.body.onload = function () {
             //Ajout du contenu, des titres et descriptions des articles.
             addName.textContent = item.name;
             addText.textContent = item.description;
-            lenseButton.innerHTML = 'Séléctionnez un objectif ';
+            lenseButton.innerHTML = 'Sélectionnez un objectif ';
             addPrice.textContent = 'Prix : ' + item.price + ' €';
             addButton.innerHTML = 'Ajouter au panier';
 

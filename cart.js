@@ -42,7 +42,6 @@ document.body.onload = function () {
   };
 
   currentItems.map(currentItem => updateCart(currentItem)); 
-  
 
   //Fonction permettant d'afficher le prix total du panier.
   let sum = 0;
