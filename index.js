@@ -1,7 +1,5 @@
 /* Constantes et variables globales */
-const itemsFetch = fetch('http://localhost:3000/api/cameras');
 var itemsStorage = document.getElementById('items-storage'); //Chemin vers la liste des articles de la Boutique.
-
 
 //Au chargement de la page Boutique.
 document.body.onload = function () {
