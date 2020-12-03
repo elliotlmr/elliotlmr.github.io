@@ -46,7 +46,7 @@ document.body.onload = function () {
             lensesChoice.setAttribute('aria-labelledby', 'dropdownMenuButton');
 
             //Footer de l'article avec prix et bouton d'ajout au panier
-            footerHolder.setAttribute('class', 'footer-holder');
+            footerHolder.setAttribute('class', 'footer-holder mt-1');
             addButton.setAttribute('class', 'btn btn-dark float-right add-cart-btn');
             addButton.setAttribute('type', 'submit');
             addButton.setAttribute('id', item._id);
